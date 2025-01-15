@@ -1,0 +1,244 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/ismin2a/Desktop/ArchiProc/TD2/sim
+valu
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1736935603
+!i10b 1
+!s100 OP5LiJfjfU6iW0ZdEUzNj2
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IYTdc8il7@g3PT2I`M1DK30
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+Z5 w1732273240
+8../hdl_src/RV32i_alu.sv
+F../hdl_src/RV32i_alu.sv
+!i122 374
+L0 11 42
+Z6 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z7 !s108 1736935603.000000
+!s107 ../hdl_src/RV32i_alu.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_alu.sv|
+!i113 1
+Z8 o-work work +acc -sv
+Z9 tCvgOpt 0
+vregfile
+R1
+R2
+!i10b 1
+!s100 SEZk^=bK;;Oe8oz>o:kNG2
+R3
+I]6;_X7i66eKHRmUaS5I8K1
+R4
+S1
+R0
+R5
+8../hdl_src/regfile.sv
+F../hdl_src/regfile.sv
+!i122 373
+L0 11 39
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../hdl_src/regfile.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/regfile.sv|
+!i113 1
+R8
+R9
+vRV32i_controlpath
+R1
+Z10 DXx4 work 9 RV32i_pkg 0 22 4Qh3O<V65PRI7f?9c2[6l0
+R2
+!i10b 1
+!s100 >KfS1WbUI<^@67O=kl38i2
+R3
+Ih9:PBFMf=n]]O_9:QL^D>3
+R4
+S1
+R0
+w1736934487
+8../hdl_src/RV32i_pipeline_controlpath.sv
+F../hdl_src/RV32i_pipeline_controlpath.sv
+!i122 375
+L0 1 280
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../hdl_src/RV32i_pipeline_controlpath.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pipeline_controlpath.sv|
+!i113 1
+R8
+R9
+n@r@v32i_controlpath
+vRV32i_datapath
+R1
+R10
+Z11 !s110 1736935604
+!i10b 1
+!s100 9@4lSLRc3AD6B>e9S50V=0
+R3
+I[?URNQCl3]0ELZ[ZW`dA?3
+R4
+S1
+R0
+w1736934491
+8../hdl_src/RV32i_pipeline_datapath.sv
+F../hdl_src/RV32i_pipeline_datapath.sv
+!i122 376
+L0 14 429
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../hdl_src/RV32i_pipeline_datapath.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pipeline_datapath.sv|
+!i113 1
+R8
+R9
+n@r@v32i_datapath
+XRV32i_pkg
+R1
+R2
+!i10b 1
+!s100 ?BY2Pm[]H`N`S<PPSn^z<2
+R3
+I4Qh3O<V65PRI7f?9c2[6l0
+V4Qh3O<V65PRI7f?9c2[6l0
+S1
+R0
+R5
+8../hdl_src/RV32i_pkg.sv
+F../hdl_src/RV32i_pkg.sv
+!i122 372
+L0 1 0
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../hdl_src/RV32i_pkg.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pkg.sv|
+!i113 1
+R8
+R9
+n@r@v32i_pkg
+vRV32i_soc
+R1
+R11
+!i10b 1
+!s100 LQlf7KRfbBKOSRiO3][?:3
+R3
+I2o2F>Q:dKoM7i8H934<6j0
+R4
+S1
+R0
+R5
+8../hdl_src/RV32i_soc.sv
+F../hdl_src/RV32i_soc.sv
+!i122 378
+L0 4 130
+R6
+r1
+!s85 0
+31
+Z12 !s108 1736935604.000000
+!s107 ../hdl_src/RV32i_soc.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_soc.sv|
+!i113 1
+R8
+R9
+n@r@v32i_soc
+vRV32i_tb
+R1
+R11
+!i10b 1
+!s100 W?[6H`hS0ehbUQ>]RlKDo1
+R3
+I2@^l2b_nJQ4ZXzWhYBS7I3
+R4
+S1
+R0
+w1734337819
+8../tb/RV32i_tb.sv
+F../tb/RV32i_tb.sv
+!i122 380
+L0 12 81
+R6
+r1
+!s85 0
+31
+R12
+!s107 ../tb/RV32i_tb.sv|
+!s90 -work|work|+acc|-sv|../tb/RV32i_tb.sv|
+!i113 1
+R8
+R9
+n@r@v32i_tb
+vRV32i_top
+R1
+R11
+!i10b 1
+!s100 4@o3@Z;G]2Zh5oPN@fmJ:1
+R3
+I4d4C76`31:=46M1<<0WNR2
+R4
+S1
+R0
+w1736934489
+8../hdl_src/RV32i_pipeline_top.sv
+F../hdl_src/RV32i_pipeline_top.sv
+!i122 377
+L0 11 87
+R6
+r1
+!s85 0
+31
+R12
+!s107 ../hdl_src/RV32i_pipeline_top.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pipeline_top.sv|
+!i113 1
+R8
+R9
+n@r@v32i_top
+vwsync_mem
+R1
+R11
+!i10b 1
+!s100 jEC0RXP3YZ`6FF5Un=g[J1
+R3
+IG]3cBlM0EJR0<j:<oMHHl0
+R4
+S1
+R0
+R5
+8../hdl_src/wsync_mem.sv
+F../hdl_src/wsync_mem.sv
+!i122 379
+L0 11 37
+R6
+r1
+!s85 0
+31
+R12
+!s107 ../hdl_src/wsync_mem.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/wsync_mem.sv|
+!i113 1
+R8
+R9

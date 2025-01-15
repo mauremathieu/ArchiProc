@@ -1,0 +1,41 @@
+# vsim RV32i_tb 
+# Start time: 18:23:58 on Dec 07,2024
+# Loading sv_std.std
+# Loading work.RV32i_tb
+# Loading work.RV32i_soc
+# Loading work.RV32i_top
+# Loading work.RV32i_pkg
+# Loading work.RV32i_datapath
+# Loading work.alu
+# Loading work.regfile
+# Loading work.RV32i_controlpath
+# Loading work.wsync_mem
+add wave -position end  sim:/RV32i_tb/RV32i_soc_inst/RV32i_core/dp/regfile_inst/register_r
+run
+# half running period= 5.000000
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Simulation stops at               160000
+# ** Note: $stop    : ../tb/RV32i_tb.sv(70)
+#    Time: 160 ns  Iteration: 1  Instance: /RV32i_tb
+# Break in Module RV32i_tb at ../tb/RV32i_tb.sv line 70
+run
+# End time: 17:46:56 on Dec 08,2024, Elapsed time: 23:22:58
+# Errors: 0, Warnings: 0

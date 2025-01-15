@@ -1,0 +1,20 @@
+# vsim RV32i_tb -do "debug.do" 
+# Start time: 16:03:11 on Jan 15,2025
+# Loading sv_std.std
+# Loading work.RV32i_tb
+# Loading work.RV32i_soc
+# Loading work.RV32i_top
+# Loading work.RV32i_pkg
+# Loading work.RV32i_datapath
+# Loading work.alu
+# Loading work.regfile
+# Loading work.RV32i_controlpath
+# Loading work.cache
+# Loading work.wsync_mem_o128
+# Loading work.wsync_mem
+# do debug.do
+# half running period= 5.000000
+# 0 ps
+# 8400 ns
+# End time: 16:13:15 on Jan 15,2025, Elapsed time: 0:10:04
+# Errors: 0, Warnings: 0

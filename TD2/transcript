@@ -1,0 +1,8 @@
+# vsim RV32i_tb -do "debug.do" 
+# Start time: 17:10:30 on Jan 08,2025
+# ** Error: (vsim-3170) Could not find 'RV32i_tb'.
+#         Searched libraries:
+#             /home/ismin2a/Desktop/ArchiProc/TD2/libs/work
+# Error loading design
+# End time: 17:10:30 on Jan 08,2025, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0

@@ -1,0 +1,294 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/ismin2a/Desktop/ArchiProc/TD2/sim
+valu
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1736953387
+!i10b 1
+!s100 OP5LiJfjfU6iW0ZdEUzNj2
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IYTdc8il7@g3PT2I`M1DK30
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z5 d/home/ismin2a/Desktop/ArchiProc/TD3/sim
+Z6 w1734337176
+8../hdl_src/RV32i_alu.sv
+F../hdl_src/RV32i_alu.sv
+!i122 182
+L0 11 42
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1736953387.000000
+!s107 ../hdl_src/RV32i_alu.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_alu.sv|
+!i113 1
+Z9 o-work work +acc -sv
+Z10 tCvgOpt 0
+vcache
+R1
+R2
+!i10b 1
+!s100 ARVlZUNFNgL=M2kbPB>g03
+R3
+IXEY4VRDnIbScmd@646P1O2
+R4
+S1
+R5
+w1736938569
+8../hdl_src/cache.sv
+F../hdl_src/cache.sv
+!i122 188
+L0 1 123
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/cache.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/cache.sv|
+!i113 1
+R9
+R10
+vregfile
+R1
+R2
+!i10b 1
+!s100 SEZk^=bK;;Oe8oz>o:kNG2
+R3
+I]6;_X7i66eKHRmUaS5I8K1
+R4
+S1
+R5
+R6
+8../hdl_src/regfile.sv
+F../hdl_src/regfile.sv
+!i122 181
+L0 11 39
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/regfile.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/regfile.sv|
+!i113 1
+R9
+R10
+vRV32i_controlpath
+R1
+Z11 DXx4 work 9 RV32i_pkg 0 22 4Qh3O<V65PRI7f?9c2[6l0
+R2
+!i10b 1
+!s100 >KfS1WbUI<^@67O=kl38i2
+R3
+Ih9:PBFMf=n]]O_9:QL^D>3
+R4
+S1
+R5
+w1736936786
+8../hdl_src/RV32i_pipeline_controlpath.sv
+F../hdl_src/RV32i_pipeline_controlpath.sv
+!i122 183
+L0 1 280
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/RV32i_pipeline_controlpath.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pipeline_controlpath.sv|
+!i113 1
+R9
+R10
+n@r@v32i_controlpath
+vRV32i_datapath
+R1
+R11
+R2
+!i10b 1
+!s100 9@4lSLRc3AD6B>e9S50V=0
+R3
+I[?URNQCl3]0ELZ[ZW`dA?3
+R4
+S1
+R5
+w1736936784
+8../hdl_src/RV32i_pipeline_datapath.sv
+F../hdl_src/RV32i_pipeline_datapath.sv
+!i122 184
+L0 14 429
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/RV32i_pipeline_datapath.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pipeline_datapath.sv|
+!i113 1
+R9
+R10
+n@r@v32i_datapath
+XRV32i_pkg
+R1
+R2
+!i10b 1
+!s100 ?BY2Pm[]H`N`S<PPSn^z<2
+R3
+I4Qh3O<V65PRI7f?9c2[6l0
+V4Qh3O<V65PRI7f?9c2[6l0
+S1
+R5
+R6
+8../hdl_src/RV32i_pkg.sv
+F../hdl_src/RV32i_pkg.sv
+!i122 180
+L0 1 0
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/RV32i_pkg.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pkg.sv|
+!i113 1
+R9
+R10
+n@r@v32i_pkg
+vRV32i_soc
+R1
+R2
+!i10b 1
+!s100 ;RlT10@``fX14oPk9[S@11
+R3
+ICHP06dUZWk1DCKMgZS]n[2
+R4
+S1
+R5
+w1734337236
+8../hdl_src/RV32i_soc.sv
+F../hdl_src/RV32i_soc.sv
+!i122 186
+L0 17 100
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/RV32i_soc.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_soc.sv|
+!i113 1
+R9
+R10
+n@r@v32i_soc
+vRV32i_tb
+R1
+!s110 1736953388
+!i10b 1
+!s100 W?[6H`hS0ehbUQ>]RlKDo1
+R3
+I2@^l2b_nJQ4ZXzWhYBS7I3
+R4
+S1
+R5
+w1734337828
+8../tb/RV32i_tb.sv
+F../tb/RV32i_tb.sv
+!i122 189
+L0 12 81
+R7
+r1
+!s85 0
+31
+!s108 1736953388.000000
+!s107 ../tb/RV32i_tb.sv|
+!s90 -work|work|+acc|-sv|../tb/RV32i_tb.sv|
+!i113 1
+R9
+R10
+n@r@v32i_tb
+vRV32i_top
+R1
+R2
+!i10b 1
+!s100 QSPi@gXVWloC[8a[_AInl2
+R3
+IGT[B7AZ:V`gOlCeT9Wn?41
+R4
+S1
+R5
+w1736937245
+8../hdl_src/RV32i_pipeline_top.sv
+F../hdl_src/RV32i_pipeline_top.sv
+!i122 185
+L0 11 85
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/RV32i_pipeline_top.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/RV32i_pipeline_top.sv|
+!i113 1
+R9
+R10
+n@r@v32i_top
+vwsync_mem
+R1
+!s110 1733741243
+!i10b 1
+!s100 jEC0RXP3YZ`6FF5Un=g[J1
+R3
+IG]3cBlM0EJR0<j:<oMHHl0
+R4
+S1
+R0
+w1732273240
+8../hdl_src/wsync_mem.sv
+F../hdl_src/wsync_mem.sv
+!i122 112
+L0 11 37
+R7
+r1
+!s85 0
+31
+!s108 1733741243.000000
+!s107 ../hdl_src/wsync_mem.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/wsync_mem.sv|
+!i113 1
+R9
+R10
+vwsync_mem_o128
+R1
+R2
+!i10b 1
+!s100 noXDaaQikaOaaR8j64SeL3
+R3
+IOelS<lM^2`POSV1m@9B^X0
+R4
+S1
+R5
+w1734337245
+8../hdl_src/wsync_mem_o128.sv
+F../hdl_src/wsync_mem_o128.sv
+!i122 187
+L0 18 59
+R7
+r1
+!s85 0
+31
+R8
+!s107 ../hdl_src/wsync_mem_o128.sv|
+!s90 -work|work|+acc|-sv|../hdl_src/wsync_mem_o128.sv|
+!i113 1
+R9
+R10

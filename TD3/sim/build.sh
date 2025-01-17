@@ -7,6 +7,7 @@ files_list=(../hdl_src/RV32i_pkg.sv \
     ../hdl_src/RV32i_pipeline_top.sv \
     ../hdl_src/RV32i_soc.sv \
     ../hdl_src/wsync_mem_o128.sv \
+    ../hdl_src/wsync_mem.sv \
     ../hdl_src/cache.sv \
     ../tb/RV32i_tb.sv)
 
@@ -15,7 +16,7 @@ if [ ! -d ./libs ]; then
   mkdir libs
 fi
 
-if [-d ./libs/work ]
+if [ -d ./libs/work ]
 then
     vdel -lib ./libs/work/ -all
     vlib ./libs/work

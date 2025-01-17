@@ -4,6 +4,7 @@ module RV32i_controlpath (
     input logic [31:0] instruction_i,
     input logic alu_zero_i,
     input logic alu_lt_i,
+    input logic imem_valid_i,
     output logic [2:0] pc_next_sel_o,
     output logic reg_we_o,
     output logic mem_we_o,
@@ -89,7 +90,7 @@ module RV32i_controlpath (
 
   always_ff @(posedge clk_i or negedge resetn_i) begin : exec_stage
     if (resetn_i == 1'b0) inst_exec_r <= 32'h0;
-    else inst_exec_r <= inst_dec_r;
+    else if (imem_valid_i) inst_exec_r <= inst_dec_r;
   end
   assign rd_add_exec_w = inst_exec_r[11:7];
 
@@ -184,11 +185,13 @@ module RV32i_controlpath (
     endcase
   end
 
-  assign branch_taken_o = branch_taken_w;
+  always_comb begin : branch_taken_output_comb
+    branch_taken_o = branch_taken_w;
+  end
 
   always_ff @(posedge clk_i or negedge resetn_i) begin : mem_stage
     if (resetn_i == 1'b0) inst_mem_r <= 32'h0;
-    else inst_mem_r <= inst_exec_r;
+    else if (imem_valid_i) inst_mem_r <= inst_exec_r;
   end
   assign rd_add_mem_w = inst_mem_r[11:7];
 
@@ -210,7 +213,7 @@ module RV32i_controlpath (
 
   always_ff @(posedge clk_i or negedge resetn_i) begin : wb_stage
     if (resetn_i == 1'b0) inst_wb_r <= 32'h0;
-    else inst_wb_r <= inst_mem_r;
+    else if (imem_valid_i) inst_wb_r <= inst_mem_r;
   end
   assign rd_add_wb_w = inst_wb_r[11:7];
   assign rd_add_o = rd_add_wb_w;
@@ -256,14 +259,27 @@ module RV32i_controlpath (
       write_rd_WB = is_write_rd(opcode_wb_w);
   end
 
-  assign stall_w = ((rs1_dec_w != 0) &&
-           ((rs1_dec_w == rd_add_exec_w && write_rd_EXE) ||
-            (rs1_dec_w == rd_add_mem_w && write_rd_MEM) ||
-            (rs1_dec_w == rd_add_wb_w && write_rd_WB))) ||
-          ((rs2_dec_w != 0) &&
-           ((rs2_dec_w == rd_add_exec_w && write_rd_EXE) ||
-            (rs2_dec_w == rd_add_mem_w && write_rd_MEM) ||
-            (rs2_dec_w == rd_add_wb_w && write_rd_WB)));
+  always_comb begin : stall_comb
+    logic rs1_hazard;
+    logic rs2_hazard;
+
+    // Vérification des dépendances pour rs1
+    rs1_hazard = (rs1_dec_w != 0) && (
+      (rs1_dec_w == rd_add_exec_w && write_rd_EXE) ||
+      (rs1_dec_w == rd_add_mem_w && write_rd_MEM) ||
+      (rs1_dec_w == rd_add_wb_w && write_rd_WB)
+    );
+
+    // Vérification des dépendances pour rs2
+    rs2_hazard = (rs2_dec_w != 0) && (
+      (rs2_dec_w == rd_add_exec_w && write_rd_EXE) ||
+      (rs2_dec_w == rd_add_mem_w && write_rd_MEM) ||
+      (rs2_dec_w == rd_add_wb_w && write_rd_WB)
+    );
+
+    // Génération du signal de stall
+    stall_w = rs1_hazard || rs2_hazard;
+  end
 
   assign stall_o = stall_w;
 
@@ -274,7 +290,9 @@ module RV32i_controlpath (
       default: pip_jump_w = 1'b0;
     endcase
   end
-  
-  assign pip_jump_o = pip_jump_w;
+
+  always_comb begin : pip_jump_output_comb
+    pip_jump_o = pip_jump_w;
+  end
 
 endmodule

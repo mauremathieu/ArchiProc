@@ -2,121 +2,81 @@ module cache #(
     localparam ByteOffsetBits = 4,
     localparam IndexBits = 6,
     localparam TagBits = 22,
+
     localparam NrWordsPerLine = 4,
     localparam NrLines = 64,
+
     localparam LineSize = 32 * NrWordsPerLine
 ) (
     input logic clk_i,
     input logic rstn_i,
+
     input logic [31:0] addr_i,
+
     // Read port
     input logic read_en_i,
     output logic read_valid_o,
     output logic [31:0] read_word_o,
+
     // Memory
     output logic [31:0] mem_addr_o,
+
     // Memory read port
     output logic mem_read_en_o,
     input logic mem_read_valid_i,
     input logic [LineSize-1:0] mem_read_data_i
 );
 
-    // Registres pour stocker les données du cache
-    logic [NrLines-1:0] valid_lines;
-    logic [NrLines-1:0][TagBits-1:0] tags;
-    logic [NrLines-1:0][LineSize-1:0] data_lines;
+    // Déclarations des structures du cache
+    typedef struct {
+        logic valid;
+        logic [TagBits-1:0] tag;
+        logic [LineSize-1:0] data;
+    } cache_line_t;
 
-    // Découpage de l'adresse
-    logic [TagBits-1:0] tag;
-    logic [IndexBits-1:0] index;
-    logic [ByteOffsetBits-1:0] offset;
+    cache_line_t cache [NrLines];
 
-    assign tag = addr_i[31:32-TagBits];
-    assign index = addr_i[32-TagBits-1:ByteOffsetBits];
-    assign offset = addr_i[ByteOffsetBits-1:0];
+    // Adresses décomposées
+    logic [ByteOffsetBits-1:0] byte_offset;
+    logic [IndexBits-1:0] cache_index;
+    logic [TagBits-1:0] cache_tag;
 
-    // Signal de hit
-    logic is_hit;
+    assign byte_offset = addr_i[ByteOffsetBits-1:0];
+    assign cache_index = addr_i[ByteOffsetBits + IndexBits - 1:ByteOffsetBits];
+    assign cache_tag = addr_i[31:ByteOffsetBits + IndexBits];
 
-    // Logique de détermination du hit
-    always_comb begin
-        // Par défaut, pas de hit
-        is_hit = 1'b0;
-        
-        // Vérification du hit
-        if (read_en_i) begin
-            // Vérifier si la ligne est valide ET que le tag correspond
-            if (valid_lines[index] && (tags[index] == tag)) begin
-                is_hit = 1'b1;
-            end
-        end
-    end
+    // Détection de hit
+    logic hit_detected;
+    logic [31:0] output_word;
 
-    // Logique de lecture du mot lors d'un hit
-    always_comb begin
-        // Valeurs par défaut
-        read_valid_o = 1'b0;
-        read_word_o = 32'b0;
-        
-        // Si c'est un hit et une lecture active
-        if (is_hit && read_en_i) begin
-            // Sélection du mot dans la ligne en fonction de l'offset
-            case (offset[ByteOffsetBits-1:2])  // Division par 4 pour trouver l'index du mot
-                2'b00: read_word_o = data_lines[index][31:0];
-                2'b01: read_word_o = data_lines[index][63:32];
-                2'b10: read_word_o = data_lines[index][95:64];
-                2'b11: read_word_o = data_lines[index][127:96];
-            endcase
-            
-            // Confirmer la validité de la lecture
-            read_valid_o = 1'b1;
-        end
-    end
+    assign hit_detected = cache[cache_index].valid && (cache[cache_index].tag == cache_tag);
+    assign output_word = cache[cache_index].data[byte_offset[ByteOffsetBits-1:2] * 32 +: 32];
 
-    // Logique de gestion des miss
-    logic is_waiting_for_mem;
-    logic [31:0] stored_addr;
+    assign read_word_o = hit_detected ? output_word : 32'b0;
+    assign read_valid_o = hit_detected;
 
-    // Requête mémoire en cas de miss
-    always_comb begin
-        // Valeurs par défaut
-        mem_read_en_o = 1'b0;
-        mem_addr_o = 32'b0;
+    // Gestion des lectures manquées
+    logic [31:0] memory_address;
+    logic memory_read_enable;
 
-        // Si miss et pas déjà en attente de mémoire
-        if (!is_hit && read_en_i && !is_waiting_for_mem) begin
-            // Alignement de l'adresse sur la ligne de cache
-            mem_addr_o = {tag, index, {ByteOffsetBits{1'b0}}};
-            mem_read_en_o = 1'b1;
-        end
-    end
+    assign memory_address = {cache_tag, cache_index, {ByteOffsetBits{1'b0}}};
+    assign memory_read_enable = read_en_i && !hit_detected;
 
-    // Gestion de la réponse mémoire
+    assign mem_addr_o = memory_address;
+    assign mem_read_en_o = memory_read_enable;
+
+    // Mise à jour du cache dans un bloc combinatoire séparé
     always_ff @(posedge clk_i or negedge rstn_i) begin
         if (!rstn_i) begin
-            // Réinitialisation
-            valid_lines <= '0;
-            is_waiting_for_mem <= 1'b0;
-            stored_addr <= 32'b0;
-        end else begin
-            // Logique de réception des données mémoire
-            if (mem_read_valid_i) begin
-                // Stocker les données
-                data_lines[index] <= mem_read_data_i;
-                
-                // Marquer la ligne comme valide
-                valid_lines[index] <= 1'b1;
-                
-                // Mettre à jour le tag
-                tags[index] <= tag;
-                
-                // Réinitialiser l'état d'attente
-                is_waiting_for_mem <= 1'b0;
-            end else if (!is_hit && read_en_i) begin
-                // Passer en attente de mémoire
-                is_waiting_for_mem <= 1'b1;
-                stored_addr <= addr_i;
+            // Réinitialisation avec des boucles combinées
+            for (int i = 0; i < NrLines; i++) begin
+                cache[i].valid <= 1'b0;
             end
+        end else if (mem_read_valid_i) begin
+            // Mise à jour directe du cache
+            cache[cache_index].data <= mem_read_data_i;
+            cache[cache_index].tag <= cache_tag;
+            cache[cache_index].valid <= 1'b1;
         end
     end
 

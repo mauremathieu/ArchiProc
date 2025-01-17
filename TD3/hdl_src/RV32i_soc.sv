@@ -43,6 +43,17 @@ module RV32i_soc #(
   logic dmem_re_w, imem_re_w, imem_cache_re_w, imem_cache_rv_w;
   logic dmem_cs_w, imem_cs_w;
   logic icache_valid_w;
+  logic [127:0] imem_cache_data_128_w;
+
+  always_comb begin
+    imem_cache_data_128_w = {
+        imem_cache_data_w[3], 
+        imem_cache_data_w[2], 
+        imem_cache_data_w[1], 
+        imem_cache_data_w[0]  
+    };
+end
+
 
   //address decoding
   assign imem_cs_w = (imem_add_w >= IMEM_BASE_ADDR) && (imem_add_w < (IMEM_BASE_ADDR + IMEM_SIZE));
@@ -77,7 +88,7 @@ module RV32i_soc #(
 	// Memory read port
 	.mem_read_en_o(imem_cache_re_w),
 	.mem_read_valid_i(imem_cache_rv_w),
-	.mem_read_data_i(imem_cache_data_w)
+	.mem_read_data_i(imem_cache_data_128_w)
   );
 
   wsync_mem_o128 #(
@@ -112,5 +123,4 @@ module RV32i_soc #(
 
   // data out multiplexer
   assign do_w = (dmem_cs_w == 1'b1) ? dmem_do_w : 32'h0;
-
 endmodule

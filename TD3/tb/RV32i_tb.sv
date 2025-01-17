@@ -21,21 +21,12 @@ module RV32i_tb ();
 
 
 
-
-
-
-
-
-
   RV32i_soc #(
       .IMEM_INIT_FILE("../firmware/imem.hex"),
       .DMEM_INIT_FILE("../firmware/dmem.hex")
   ) RV32i_soc_inst (
       .clk_i(clk_r),
-
-
-
-
+      
 
       .resetn_i(resetn_r)
 

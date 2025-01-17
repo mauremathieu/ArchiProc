@@ -249,7 +249,6 @@ module RV32i_controlpath (
       endcase
   endfunction
 
-  // Dans un bloc always_comb
   always_comb begin
       write_rd_EXE = is_write_rd(opcode_exec_w);
       write_rd_MEM = is_write_rd(opcode_mem_w);

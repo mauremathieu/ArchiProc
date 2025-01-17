@@ -123,4 +123,5 @@ end
 
   // data out multiplexer
   assign do_w = (dmem_cs_w == 1'b1) ? dmem_do_w : 32'h0;
+
 endmodule

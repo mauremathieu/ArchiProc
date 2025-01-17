@@ -185,9 +185,7 @@ module RV32i_controlpath (
     endcase
   end
 
-  always_comb begin : branch_taken_output_comb
-    branch_taken_o = branch_taken_w;
-  end
+  assign branch_taken_o = branch_taken_w;
 
   always_ff @(posedge clk_i or negedge resetn_i) begin : mem_stage
     if (resetn_i == 1'b0) inst_mem_r <= 32'h0;
@@ -252,34 +250,20 @@ module RV32i_controlpath (
       endcase
   endfunction
 
-  // Dans un bloc always_comb
   always_comb begin
       write_rd_EXE = is_write_rd(opcode_exec_w);
       write_rd_MEM = is_write_rd(opcode_mem_w);
       write_rd_WB = is_write_rd(opcode_wb_w);
   end
 
-  always_comb begin : stall_comb
-    logic rs1_hazard;
-    logic rs2_hazard;
-
-    // Vérification des dépendances pour rs1
-    rs1_hazard = (rs1_dec_w != 0) && (
-      (rs1_dec_w == rd_add_exec_w && write_rd_EXE) ||
-      (rs1_dec_w == rd_add_mem_w && write_rd_MEM) ||
-      (rs1_dec_w == rd_add_wb_w && write_rd_WB)
-    );
-
-    // Vérification des dépendances pour rs2
-    rs2_hazard = (rs2_dec_w != 0) && (
-      (rs2_dec_w == rd_add_exec_w && write_rd_EXE) ||
-      (rs2_dec_w == rd_add_mem_w && write_rd_MEM) ||
-      (rs2_dec_w == rd_add_wb_w && write_rd_WB)
-    );
-
-    // Génération du signal de stall
-    stall_w = rs1_hazard || rs2_hazard;
-  end
+  assign stall_w = ((rs1_dec_w != 0) &&
+           ((rs1_dec_w == rd_add_exec_w && write_rd_EXE) ||
+            (rs1_dec_w == rd_add_mem_w && write_rd_MEM) ||
+            (rs1_dec_w == rd_add_wb_w && write_rd_WB))) ||
+          ((rs2_dec_w != 0) &&
+           ((rs2_dec_w == rd_add_exec_w && write_rd_EXE) ||
+            (rs2_dec_w == rd_add_mem_w && write_rd_MEM) ||
+            (rs2_dec_w == rd_add_wb_w && write_rd_WB)));
 
   assign stall_o = stall_w;
 
@@ -290,9 +274,6 @@ module RV32i_controlpath (
       default: pip_jump_w = 1'b0;
     endcase
   end
-
-  always_comb begin : pip_jump_output_comb
-    pip_jump_o = pip_jump_w;
-  end
+  assign pip_jump_o = pip_jump_w;
 
 endmodule

@@ -8,7 +8,10 @@ files_list=(../hdl_src/RV32i_pkg.sv \
     ../hdl_src/RV32i_soc.sv \
     ../hdl_src/wsync_mem_o128.sv \
     ../hdl_src/wsync_mem.sv \
+
+    #../hdl_src/direct_cache.sv \
     ../hdl_src/cache.sv \
+    
     ../tb/RV32i_tb.sv)
 
 

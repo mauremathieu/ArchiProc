@@ -1,5 +1,5 @@
 # vsim RV32i_tb -do "debug.do" 
-# Start time: 11:34:18 on Jan 17,2025
+# Start time: 22:57:34 on Jan 17,2025
 # Loading sv_std.std
 # Loading work.RV32i_tb
 # Loading work.RV32i_soc
@@ -14,9 +14,3 @@
 # Loading work.wsync_mem
 # do debug.do
 # half running period= 5.000000
-# Simulation stops at              2955000
-# ** Note: $stop    : ../tb/RV32i_tb.sv(80)
-#    Time: 2955 ns  Iteration: 1  Instance: /RV32i_tb
-# Break in Module RV32i_tb at ../tb/RV32i_tb.sv line 80
-# 0 ps
-# 3102750 ps
